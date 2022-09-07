@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="picture.png" alt="the fucking hell(school time)" width="320"  height="320">
+    <img src="picture.png" alt="the fucking hell(school time)" width="160"  height="160">
     <h1>Fuck the school bot</h1>
 </div>
 
