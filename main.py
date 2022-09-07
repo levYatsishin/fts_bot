@@ -14,10 +14,10 @@ from logic_module import get_time
 from keyboards_module import generate_default_keyboard
 
 
-API_TOKEN = os.environ["API_TOKEN"]
+API_TOKEN = os.environ["API_TOKEN_fts"]
 WEBHOOK_PATH = ""
-WEBHOOK_URL = subprocess.check_output("curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url",
-                                      shell=True).decode('utf-8')[:-1]
+WEBHOOK_URL = subprocess.check_output('curl -s localhost:4040/api/tunnels/fuck_the_school_bot | jq -r .public_url', shell=True).decode('utf-8')[:-1]
+print(WEBHOOK_URL)
 WEBAPP_HOST = '127.0.0.1'
 WEBAPP_PORT = 5001
 
