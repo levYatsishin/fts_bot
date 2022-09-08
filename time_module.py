@@ -41,7 +41,7 @@ def when_ending(cur_time, current_week_day=1):
     elif cur_time < lesson_schedule[0][0]:
         return {"status": "exception", "exception_status": "too_early",
                 "additional_info": subtract_times(start_time, cur_time)}
-    elif cur_time > lesson_schedule[8][0]:
+    elif cur_time > lesson_schedule[7][0]:
         return {"status": "exception", "exception_status": "too_late", "additional_info": None}
 
     for n, timespan in lesson_schedule.items():
