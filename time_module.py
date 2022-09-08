@@ -30,8 +30,8 @@ def strfdelta(tdelta):
 
 # schedule times {№_of_the_lesson: (start_time, end_time)}
 # 0th lesson is «Important Talks» 30min session
-lesson_schedule = {n: (calculate_lesson_start_time(n), calculate_lesson_end_time(n)) for n in range(1, 9)}
-breaks_schedule = {n: (span[1], add_minutes(span[1], breaks[n-1])) for (n, span) in lesson_schedule.items()}
+lesson_schedule = {n: (calculate_lesson_start_time(n), calculate_lesson_end_time(n)) for n in range(1, 8)}
+breaks_schedule = {n: (span[1], add_minutes(span[1], breaks[n])) for (n, span) in lesson_schedule.items()}
 lesson_schedule[0] = (start_time, add_minutes(start_time, 30))
 
 

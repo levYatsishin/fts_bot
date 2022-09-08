@@ -5,7 +5,7 @@ from sql_module import db_row_exists, db_create_new_row, db_update_time, db_sele
 
 def get_time():
     end_data = when_ending(datetime.now(time_zone).time(), datetime.today().weekday())
-
+    print(end_data)
     if end_data['status'] == 'exception':
         if end_data['exception_status'] == "weekend":
             weekday = "субботу" if end_data['additional_info'] == 5 else "воскресенье"
