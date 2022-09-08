@@ -1,6 +1,6 @@
 from time_module import when_ending, strfdelta, time_zone
 from datetime import datetime
-from datetime import time as time_object
+from sql_module import db_row_exists, db_create_new_row, db_update_time, db_select_column
 
 
 def get_time():
@@ -26,5 +26,28 @@ def get_time():
 
     elif end_data['status'] == 'break':
         m, s = strfdelta(end_data['time_left'])
-        return f"Сейчас перемена перед {end_data['No']+1} уроком." \
+        return f"Сейчас перемена перед {end_data['No'] + 1} уроком." \
                f"\nКонец через {m}:{s}"
+
+
+def new_user(m):
+    if not db_row_exists(m.chat.id):
+        name = "None" if not m.chat.first_name else m.chat.first_name
+        username = "None" if not m.chat.username else m.chat.username
+
+        db_create_new_row(m.chat.id, name, username)
+
+
+def update_time_used(m):
+    timestamp = datetime.now(time_zone)
+    db_update_time(m.chat.id, timestamp)
+
+
+def get_statistics():
+    names = db_select_column("user_name")
+    usernames = db_select_column("user_username")
+    data = db_select_column("last_data")
+    statistics = "\n".join([f"{x[0][0]} – @{x[1][0]} {x[2][0][:-13]}" if x[1][0] != "None"
+                            else f"{x[0][0]} – no username {x[2][0][:-13]}"
+                            for x in list(zip(names, usernames, data))])
+    return statistics

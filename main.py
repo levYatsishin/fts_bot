@@ -10,7 +10,7 @@ from aiogram.dispatcher import FSMContext
 import os
 import subprocess
 
-from logic_module import get_time
+from logic_module import get_time, new_user, update_time_used, get_statistics
 from keyboards_module import generate_default_keyboard
 
 
@@ -34,8 +34,10 @@ class Form(StatesGroup):
 
 
 # -----------   HANDLERS   -----------
+# initial handler
 @dp.message_handler(state=None)
 async def start(message: types.Message):
+    new_user(message)
     await bot.send_message(message.chat.id, "Вечер добрый. можешь нажать на кнопку внизу или написать мне любой"
                                             " другой лабуды и узнаешь сколько тебе еще тут отбывать",
                            reply_markup=generate_default_keyboard())
@@ -43,9 +45,18 @@ async def start(message: types.Message):
     await Form.active.set()
 
 
+# statistics handler
+@dp.message_handler(commands=['fts'], user_id=186167695, state="*")
+async def start(message: types.Message):
+    statistics = get_statistics()
+    await bot.send_message(message.chat.id, statistics, parse_mode="html", reply_markup=generate_default_keyboard())
+
+
+# default handler
 @dp.message_handler(state=Form.active)
 async def get_time_handler(message: types.Message):
     answer = get_time()
+    update_time_used(message)
     await bot.send_message(message.chat.id, answer, parse_mode="html", reply_markup=generate_default_keyboard())
 
 
