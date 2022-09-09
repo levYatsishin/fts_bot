@@ -5,18 +5,19 @@ from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils.executor import start_webhook
 from aiogram.dispatcher.filters.state import State, StatesGroup
-from aiogram.dispatcher import FSMContext
+from aiogram.dispatcher import filters
 
 import os
 import subprocess
 
-from logic_module import get_time, new_user, update_time_used, get_statistics
-from keyboards_module import generate_default_keyboard
+from logic_module import get_time, new_user, update_time_used, get_statistics, get_timetable
+from keyboards_module import generate_default_keyboard, system_phrases
 
 
 API_TOKEN = os.environ["API_TOKEN_fts"]
 WEBHOOK_PATH = ""
-WEBHOOK_URL = subprocess.check_output('curl -s localhost:4040/api/tunnels/fuck_the_school_bot | jq -r .public_url', shell=True).decode('utf-8')[:-1]
+WEBHOOK_URL = subprocess.check_output('curl -s localhost:4040/api/tunnels/fuck_the_school_bot | jq -r .public_url',
+                                      shell=True).decode('utf-8')[:-1]
 print(WEBHOOK_URL)
 WEBAPP_HOST = '127.0.0.1'
 WEBAPP_PORT = 5001
@@ -50,6 +51,14 @@ async def start(message: types.Message):
 async def start(message: types.Message):
     statistics = get_statistics()
     await bot.send_message(message.chat.id, statistics, parse_mode="html", reply_markup=generate_default_keyboard())
+
+
+# Time schedule handler
+@dp.message_handler(filters.Text(equals=system_phrases["timetable"]), state=Form.active)
+async def get_time_handler(message: types.Message):
+    answer = get_timetable()
+    update_time_used(message)
+    await bot.send_message(message.chat.id, answer, parse_mode="html", reply_markup=generate_default_keyboard())
 
 
 # default handler

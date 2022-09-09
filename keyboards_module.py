@@ -18,9 +18,12 @@ phrases = ["Сколько мне еще тут разлагаться?",
            "Скоро еще?",
            "Пааап, сколько еще ехать?"]
 
+system_phrases = {"timetable": "⏰ Расписание(по времени)"}
+
 
 def generate_default_keyboard():
     buttons = real_choice(phrases, number=2)
+    buttons.append(*system_phrases.values())
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     for button in buttons:
         keyboard.add(button)
