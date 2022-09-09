@@ -18,7 +18,7 @@ phrases = ["Сколько мне еще тут разлагаться?",
            "Скоро еще?",
            "Пааап, сколько еще ехать?"]
 
-system_phrases = {"timetable": "⏰ Расписание звонков>"}
+system_phrases = {"timetable": "⏰ Расписание звонков"}
 
 
 def generate_default_keyboard():
