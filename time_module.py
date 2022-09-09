@@ -12,14 +12,14 @@ breaks = {0: 10,
           5: 20,
           6: 20,
           7: 20}
-start_time = time_object(8, 20)
+start_time = time_object(8, 30)
 time_zone = pytz.timezone('Europe/Moscow')
 
 
 # ––––––––-backend functions––––––––
 add_minutes = lambda time, minutes: (datetime.combine(date(1, 1, 1), time) + timedelta(minutes=minutes)).time()
 subtract_times = lambda time1, time2: datetime.combine(date.min, time1) - datetime.combine(date.min, time2)
-calculate_lesson_start_time = lambda n: add_minutes(start_time, sum(list(breaks.values())[:n])+40*(n-1)+30)
+calculate_lesson_start_time = lambda n: add_minutes(start_time, sum(list(breaks.values())[:n])+40*(n-1)+20)
 calculate_lesson_end_time = lambda n:  add_minutes(calculate_lesson_start_time(n), 40)
 
 
@@ -32,7 +32,7 @@ def strfdelta(tdelta):
 # 0th lesson is «Important Talks» 30min session
 lesson_schedule = {n: (calculate_lesson_start_time(n), calculate_lesson_end_time(n)) for n in range(1, 8)}
 breaks_schedule = {n: (span[1], add_minutes(span[1], breaks[n])) for (n, span) in lesson_schedule.items()}
-lesson_schedule[0] = (start_time, add_minutes(start_time, 30))
+lesson_schedule[0] = (start_time, add_minutes(start_time, 20))
 
 
 def when_ending(cur_time, current_week_day=1):
