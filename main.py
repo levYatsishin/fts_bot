@@ -35,7 +35,7 @@ class Form(StatesGroup):
 
 
 # -----------   HANDLERS   -----------
-# initial handler
+# Initial handler
 @dp.message_handler(state=None)
 async def start(message: types.Message):
     new_user(message)
@@ -46,7 +46,7 @@ async def start(message: types.Message):
     await Form.active.set()
 
 
-# statistics handler
+# Statistics handler
 @dp.message_handler(commands=['fts'], user_id=186167695, state="*")
 async def start(message: types.Message):
     statistics = get_statistics()
@@ -57,16 +57,16 @@ async def start(message: types.Message):
 @dp.message_handler(filters.Text(equals=system_phrases["timetable"]), state=Form.active)
 async def get_time_handler(message: types.Message):
     answer = get_timetable()
-    update_time_used(message)
     await bot.send_message(message.chat.id, answer, parse_mode="html", reply_markup=generate_default_keyboard())
+    update_time_used(message)
 
 
-# default handler
+# Default handler
 @dp.message_handler(state=Form.active)
 async def get_time_handler(message: types.Message):
     answer = get_time()
-    update_time_used(message)
     await bot.send_message(message.chat.id, answer, parse_mode="html", reply_markup=generate_default_keyboard())
+    update_time_used(message)
 
 
 # -----------END OF HANDLERS-----------
