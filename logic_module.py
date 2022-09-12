@@ -39,8 +39,15 @@ def get_timetable():
                      ).replace("Урок №0", "<b><i>Важные разговоры</i></b>")
 
 
+def check_user_existence(m):
+    if db_row_exists(m.chat.id):
+        return True
+    else:
+        return False
+
+
 def new_user(m):
-    if not db_row_exists(m.chat.id):
+    if not check_user_existence(m):
         name = "None" if not m.chat.first_name else m.chat.first_name
         username = "None" if not m.chat.username else m.chat.username
 
