@@ -2,6 +2,8 @@ from time_module import when_ending, strfdelta
 from time_module import time_zone, breaks_schedule, lesson_schedule
 from datetime import datetime
 from sql_module import db_row_exists, db_create_new_row, db_update_time, db_select_column
+#   for debugging purposes
+from datetime import time as time_object
 
 
 def get_time():

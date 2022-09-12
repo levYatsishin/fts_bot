@@ -10,8 +10,8 @@ breaks = {0: 10,
           3: 20,
           4: 20,
           5: 20,
-          6: 20,
-          7: 20}
+          6: 10,
+          7: 10}
 start_time = time_object(8, 30)
 time_zone = pytz.timezone('Europe/Moscow')
 
@@ -41,7 +41,7 @@ def when_ending(cur_time, current_week_day=1):
     elif cur_time < lesson_schedule[0][0]:
         return {"status": "exception", "exception_status": "too_early",
                 "additional_info": subtract_times(start_time, cur_time)}
-    elif cur_time > lesson_schedule[7][0]:
+    elif cur_time > lesson_schedule[max(list(lesson_schedule.items()))[0]][0]:
         return {"status": "exception", "exception_status": "too_late", "additional_info": None}
 
     for n, timespan in lesson_schedule.items():
