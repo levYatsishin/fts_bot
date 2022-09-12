@@ -10,7 +10,7 @@ from aiogram.dispatcher import filters
 import os
 import subprocess
 
-from logic_module import get_time, new_user, update_time_used, get_statistics, get_timetable, check_user_existence
+from logic_module import get_time, new_user, update_time_used, get_statistics, get_timetable
 from keyboards_module import generate_default_keyboard, system_phrases
 
 
@@ -38,11 +38,10 @@ class Form(StatesGroup):
 # Initial handler
 @dp.message_handler(state=None)
 async def start(message: types.Message):
-    if not check_user_existence(message):
-        new_user(message)
-        await bot.send_message(message.chat.id, "Вечер добрый. можешь нажать на кнопку внизу или написать мне любой"
-                                                " другой лабуды и узнаешь сколько тебе еще тут отбывать",
-                               reply_markup=generate_default_keyboard())
+    new_user(message)
+    await bot.send_message(message.chat.id, "Вечер добрый. можешь нажать на кнопку внизу или написать мне любой"
+                                            " другой лабуды и узнаешь сколько тебе еще тут отбывать",
+                           reply_markup=generate_default_keyboard())
 
     await Form.active.set()
 
