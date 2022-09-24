@@ -1,6 +1,6 @@
 <div align="center">
     <img src="picture.png" alt="the fucking hell(school time)" width="160"  height="160">
-    <h1>Fuck the school bot</h1>
+    <h1>FTS bot</h1>
 </div>
 
 Simple bot that tells you the time untill the end of the lesson / break / other stuff.</br>
