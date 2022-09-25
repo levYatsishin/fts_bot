@@ -3,8 +3,13 @@
     <h1>FTS bot</h1>
 </div>
 
-Simple bot that tells you the time untill the end of the lesson / break / other stuff.</br>
+Simple bot that tells you the time until the end of the lesson / break / other stuff.</br>
 Вместо тысячи слов и вопросов «Когда конец?».</br>
+<h3> ⚙️ Tech Stack  </h3>
+- asynchronous telegram interface library aiogram 
+- mysql database
+- hosted on rented vps
+
 **[Telegram](https://t.me/fuck_the_school_bot)**
 
 
