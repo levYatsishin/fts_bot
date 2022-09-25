@@ -6,9 +6,11 @@
 Simple bot that tells you the time until the end of the lesson / break / other stuff.</br>
 Вместо тысячи слов и вопросов «Когда конец?».</br>
 <h3> ⚙️ Tech Stack  </h3>
-* asynchronous telegram interface library aiogram
-* mysql database 
-* hosted on rented vps
+<ul>
+    <li>asynchronous telegram interface library aiogram</li>
+    <li>mysql database</li>
+    <li>hosted on rented vps</li>
+</ul>
 
 **[Telegram](https://t.me/fuck_the_school_bot)**
 
