@@ -12,7 +12,6 @@ Simple bot that tells you the time until the end of the lesson / break / other s
     <li>hosted on rented vps</li>
 </ul>
 
-**[Telegram](https://t.me/fuck_the_school_bot)**
-
-
 _Polishing my telegram bots creation skills_
+
+**01.01.2024 – Down**
